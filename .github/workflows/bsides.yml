@@ -1,16 +1,14 @@
----
+name: hello
 
-name: "BSides Montreal 2023"
-
-on:
-  workflow_dispatch
+on: workflow_dispatch
 
 jobs:
-  hello_world:
-  runs-on: ubuntu-latest
-  steps:
-    - run: |
-      id
-      uname -a
-      env
-      echo "Hello BSides Montreal"
+  sample:
+    runs-on: ubuntu-latest
+    name: Bsides Mtl
+    steps:
+      - run: |
+            id
+            uname -a
+            env
+            echo "Hello BSides!"
