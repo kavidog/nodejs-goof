@@ -12,6 +12,10 @@ jobs:
             uname -a
             env
             echo "Hello BSides!"
+
+  zap:
+    runs-on: ubuntu-latest
+    steps:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.9.0
         with:
@@ -20,3 +24,14 @@ jobs:
           target: 'https://juice-shop.herokuapp.com'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
+
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master # For node projects, change accordingly
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
+        with:
+          command: monitor
